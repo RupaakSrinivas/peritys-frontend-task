@@ -6,6 +6,7 @@ import { useAuthStore } from "@/store/auth";
 import { useEffect } from "react";
 import Header from "@/components/header";
 import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -37,6 +38,7 @@ export default function RootLayout({
         <Header />
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );
