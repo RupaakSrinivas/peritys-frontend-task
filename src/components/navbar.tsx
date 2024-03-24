@@ -1,10 +1,15 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CiSearch, CiHeart } from "react-icons/ci";
 import { IoCartOutline } from "react-icons/io5";
 
 export default function Navbar() {
-  const [active, setActive] = useState("home");
+  const [active, setActive] = useState("/home");
+
+  useEffect(() => {
+    const currentLink = window.location.pathname;
+    setActive(currentLink);
+  }, []);
 
   return (
     <div className="h-[64px] border-b-2 text-[0.5rem] md:text-[1rem] flex flex-row items-center justify-around p-4">
@@ -15,10 +20,10 @@ export default function Navbar() {
         <ul className="flex flex-row items-center space-x-4">
           <li>
             <a
-              href="#"
+              href="/"
               onClick={() => setActive("home")}
               className={`${
-                active === "home" ? " border-b-2 border-black py-2" : ""
+                active === "/" ? " border-b-2 border-black py-2" : ""
               }`}
             >
               Home
@@ -26,10 +31,10 @@ export default function Navbar() {
           </li>
           <li>
             <a
-              href="#"
+              href="/about"
               onClick={() => setActive("about")}
               className={`${
-                active === "about" ? " border-b-2 border-black py-2" : ""
+                active === "/about" ? " border-b-2 border-black py-2" : ""
               }`}
             >
               About
@@ -37,10 +42,10 @@ export default function Navbar() {
           </li>
           <li>
             <a
-              href="#"
+              href="/contact"
               onClick={() => setActive("contact")}
               className={`${
-                active === "contact" ? " border-b-2 border-black py-2" : ""
+                active === "/contact" ? " border-b-2 border-black py-2" : ""
               }`}
             >
               Contact
@@ -48,10 +53,10 @@ export default function Navbar() {
           </li>
           <li>
             <a
-              href="#"
+              href="/services"
               onClick={() => setActive("services")}
               className={`${
-                active === "services" ? " border-b-2 border-black py-2" : ""
+                active === "/services" ? " border-b-2 border-black py-2" : ""
               }`}
             >
               Services
