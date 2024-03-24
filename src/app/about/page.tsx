@@ -1,6 +1,9 @@
 "use client";
 import pageNavigation from "@/components/pageNavigation";
 import { CiShop, CiDollar, CiShoppingBasket, CiBag1 } from "react-icons/ci";
+import { LiaShippingFastSolid } from "react-icons/lia";
+import { RiCustomerServiceLine } from "react-icons/ri";
+import { GoShieldCheck } from "react-icons/go";
 import Image from "next/image";
 import { IconType } from "react-icons";
 import { useState } from "react";
@@ -14,6 +17,7 @@ interface statCardProps {
   image: IconType;
   value: string;
   desc: string;
+  border: boolean;
 }
 
 interface PersonCardProps {
@@ -27,7 +31,9 @@ function StatCard(data: statCardProps) {
   return (
     <div
       id="card"
-      className="w-[270px] h-[230px] border border-opacity-30 border-black flex flex-col items-center justify-around hover:bg-red-500 hover:text-white rounded-md"
+      className={`w-[270px] h-[200px] ${
+        data.border ? "border border-opacity-30 border-black" : ""
+      } flex flex-col items-center justify-around hover:bg-red-500 hover:text-white rounded-md`}
       onMouseOver={() => {
         setHover(true);
       }}
@@ -44,15 +50,15 @@ function StatCard(data: statCardProps) {
       >
         <data.image />
       </div>
-      <h1 className="font-bold text-[1.5rem]">{data.value}</h1>
-      <p className="text-[0.75rem]">{data.desc}</p>
+      <h1 className="font-bold text-[1.25rem]">{data.value}</h1>
+      <p className="text-[1rem]">{data.desc}</p>
     </div>
   );
 }
 
 function PersonCard(data: PersonCardProps) {
   return (
-    <div className="flex flex-col items-center justify-center w-[250px]">
+    <div className="flex flex-col items-center justify-center w-[360px]">
       <Image src={data.image} alt="About Image" width={370} height={430} />
       <div className="flex flex-col gap-2 w-full max-w-[400px] py-4">
         <h1 className="font-500 mb-4 text-[2rem] md:text-[2rem]">
@@ -96,31 +102,35 @@ export default function About() {
           className="w-full hidden md:block max-w-[40%]"
         />
       </div>
-      <div className="mt-[5rem] mb-4">
-        <div className="flex flex-wrap items-center justify-around gap-4">
+      <div className="mt-[5rem]">
+        <div className="flex flex-wrap items-center justify-center gap-4">
           {StatCard({
             image: CiShop,
             value: "10.5k",
             desc: "Sellers active on our site",
+            border: true,
           })}
           {StatCard({
             image: CiDollar,
             value: "33k",
             desc: "Monthly product sale",
+            border: true,
           })}
           {StatCard({
             image: CiShoppingBasket,
             value: "45.5k",
             desc: "Customer active in our site",
+            border: true,
           })}
           {StatCard({
             image: CiBag1,
             value: "25k",
             desc: "Annual gross sale in our site",
+            border: true,
           })}
         </div>
       </div>
-      <div className="flex flex-wrap items-center justify-center gap-8 mt-[5rem]">
+      <div className="flex flex-wrap items-center justify-center gap-8 my-[5rem]">
         {PersonCard({
           name: "Tom Cruise",
           image: "/person1.png",
@@ -135,6 +145,26 @@ export default function About() {
           name: "Will Smith",
           image: "/person3.png",
           desc: "Product Designer",
+        })}
+      </div>
+      <div className="flex flex-wrap items-center justify-center gap-8 my-[5rem]">
+        {StatCard({
+          image: LiaShippingFastSolid,
+          value: "FREE AND FAST DELIVERY",
+          desc: "Free delivery on all orders over $140",
+          border: false,
+        })}
+        {StatCard({
+          image: RiCustomerServiceLine,
+          value: "24/7 CUSTOMER SERVICE",
+          desc: "Friendly 24/7 customer service",
+          border: false,
+        })}
+        {StatCard({
+          image: GoShieldCheck,
+          value: "MONEY BACK GUARANTEE",
+          desc: "We return money within 30 days",
+          border: false,
         })}
       </div>
     </div>
