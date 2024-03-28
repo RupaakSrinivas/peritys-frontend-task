@@ -6,11 +6,11 @@ import { ProductResp } from "@/types/products";
 import axios from "axios";
 import Image from "next/image";
 import { useLoadingStore } from "@/store/loading";
-import { start } from "repl";
+import { useSearchParams } from 'next/navigation'
 
 export default function ProductDetails() {
-  const params = new URLSearchParams(window.location.search);
-  const id = params.get("id");
+    const searchParams = useSearchParams()
+    const id = searchParams.get('id')
     const { startLoading, stopLoading } = useLoadingStore();
 
   const [data, setData] = useState<ProductResp>({} as ProductResp);
