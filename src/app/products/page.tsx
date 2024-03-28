@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import pageNavigation from "@/components/pageNavigation";
 import axios from "axios";

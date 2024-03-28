@@ -9,6 +9,7 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import "@mantine/core/styles.css";
 import "@mantine/carousel/styles.css";
+import { Suspense } from "react";
 
 import { MantineProvider, ColorSchemeScript } from "@mantine/core";
 import LoadingScreen from "@/components/loadingScreen";
@@ -47,7 +48,7 @@ export default function RootLayout({
           {LoadingScreen()}
           <Header />
           <Navbar />
-          {children}
+          <Suspense>{children}</Suspense>
           <Footer />
         </MantineProvider>
       </body>

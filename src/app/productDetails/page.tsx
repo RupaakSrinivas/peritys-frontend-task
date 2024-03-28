@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import pageNavigation from "@/components/pageNavigation";
 import { useEffect, useState } from "react";
@@ -7,11 +7,13 @@ import axios from "axios";
 import Image from "next/image";
 import { useLoadingStore } from "@/store/loading";
 import { useSearchParams } from 'next/navigation'
+import { Suspense } from "react";
 
 export default function ProductDetails() {
-    const searchParams = useSearchParams()
-    const id = searchParams.get('id')
-    const { startLoading, stopLoading } = useLoadingStore();
+  const searchParams = useSearchParams()
+  const id = searchParams.get('id')
+
+  const { startLoading, stopLoading } = useLoadingStore();
 
   const [data, setData] = useState<ProductResp>({} as ProductResp);
   const [links, setLinks] = useState<{ name: string; url: string }[]>([
