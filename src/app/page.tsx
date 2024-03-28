@@ -8,9 +8,7 @@ import { Carousel } from "@mantine/carousel";
 import { useMediaQuery } from "@mantine/hooks";
 import { useMantineTheme } from "@mantine/core";
 import Card from "@/components/productCard";
-import ProductResp from "@/types/products";
-
-
+import { ProductResp } from "@/types/products";
 
 const CountDownTimer = () => {
   const difference = +new Date("2024-03-28 23:59:49") - +new Date();
@@ -29,7 +27,12 @@ const CountDownTimer = () => {
     return timeLeft;
   };
 
-  const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -37,6 +40,7 @@ const CountDownTimer = () => {
     }, 1000);
 
     return () => clearTimeout(timer);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   });
 
   return (
@@ -111,25 +115,29 @@ export default function Home() {
         <nav className="border-r-2 hidden md:flex flex-col items-center justify-center p-4 px-8 w-full h-full max-w-[300px]">
           <ul className="flex flex-col gap-4">
             <li>
-              <a href="/">Women&apos;s Fashion</a>
+              <a href="/products?category=women's clothing">
+                Women&apos;s Fashion
+              </a>
             </li>
             <li>
-              <a href="/about">Mens&apos;s Fashion</a>
+              <a href="/products?category=men's clothing">
+                Mens&apos;s Fashion
+              </a>
             </li>
             <li>
-              <a href="/contact">Electronics</a>
+              <a href="/products?category=jewelery">Jewelery</a>
+            </li>
+            <li>
+              <a href="/products?category=electronics">Electronics</a>
             </li>
             <li>
               <a href="/products">Home & Lifestyle</a>
             </li>
             <li>
-              <a href="/">Medicine</a>
+              <a href="/products">Sports & Outdoors</a>
             </li>
             <li>
-              <a href="/about">Sports & Outdoors</a>
-            </li>
-            <li>
-              <a href="/contact">Baby&apos;s & Toys</a>
+              <a href="/products">Baby&apos;s & Toys</a>
             </li>
             <li>
               <a href="/products">Groceries & Pets</a>

@@ -2,7 +2,7 @@
 
 import pageNavigation from "@/components/pageNavigation";
 import axios from "axios";
-import ProductResp from "@/types/products";
+import { ProductResp } from "@/types/products";
 import { useState, useEffect } from "react";
 import Card from "@/components/productCard";
 import { useLoadingStore } from "@/store/loading";
@@ -16,10 +16,17 @@ export default function Products() {
   const [products, setProducts] = useState<ProductResp[]>([]);
   const { startLoading, stopLoading } = useLoadingStore();
 
+  const params = new URLSearchParams(window.location.search);
+  const category = params.get("category");
+
   const getProducts = async () => {
     try {
       startLoading();
-      const res = await axios.get("https://fakestoreapi.com/products");
+      const res = await axios.get(
+        `https://fakestoreapi.com/products${
+          category ? `/category/${category}` : ""
+        }`
+      );
       const productData: ProductResp[] = res.data;
       setProducts(productData);
       stopLoading();

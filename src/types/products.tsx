@@ -1,4 +1,4 @@
-export default interface ProductResp {
+export interface ProductResp {
   id: number;
   title: string;
   price: number;
