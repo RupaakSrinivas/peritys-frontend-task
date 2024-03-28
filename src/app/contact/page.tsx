@@ -1,6 +1,6 @@
 "use client";
 import pageNavigation from "@/components/pageNavigation";
-import { MouseEvent, useState } from "react";
+import { useState } from "react";
 import { FiPhone } from "react-icons/fi";
 import { CiMail } from "react-icons/ci";
 

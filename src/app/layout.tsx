@@ -7,6 +7,11 @@ import { useEffect } from "react";
 import Header from "@/components/header";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import "@mantine/core/styles.css";
+import "@mantine/carousel/styles.css";
+
+import { MantineProvider, ColorSchemeScript } from "@mantine/core";
+import LoadingScreen from "@/components/loadingScreen";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,11 +39,17 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <head>
+        <ColorSchemeScript />
+      </head>
       <body className={inter.className}>
-        <Header />
-        <Navbar />
-        {children}
-        <Footer />
+        <MantineProvider>
+          {LoadingScreen()}
+          <Header />
+          <Navbar />
+          {children}
+          <Footer />
+        </MantineProvider>
       </body>
     </html>
   );

@@ -106,7 +106,7 @@ export default function Footer() {
             </nav>
           </div>
         </div>
-        <div>
+        {/* <div>
           <div className="flex flex-col gap-4 w-full">
             <h1 className="font-bold text-[1.5rem]">Download App</h1>
             <p>Save $3 with app, New user only</p>
@@ -166,8 +166,8 @@ export default function Footer() {
               />
             </div>
           </div>
-        </div>
-      </div>
+        </div>*/}
+      </div> 
       <div className="opacity-[50%] items-center flex flex-row justify-center border-t-2 w-full h-[48px]">
         &#169; Copyright Rimel 2022. All rights reserved.
       </div>
