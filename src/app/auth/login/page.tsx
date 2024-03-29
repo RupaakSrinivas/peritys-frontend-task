@@ -24,7 +24,7 @@ export default function login() {
             Login
           </button>
           <button className="rounded-sm w-full text-red-500">
-            Forget Password?
+            Forgot Password?
           </button>
         </div>
       </form>

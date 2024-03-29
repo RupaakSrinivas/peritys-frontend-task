@@ -53,13 +53,13 @@ export default function Navbar() {
           </li>
           <li>
             <a
-              href="/services"
-              onClick={() => setActive("services")}
+              href="/auth/signup"
+              onClick={() => setActive("signup")}
               className={`${
-                active === "/services" ? " border-b-2 border-black py-2" : ""
+                active === "/signup" ? " border-b-2 border-black py-2" : ""
               }`}
             >
-              Services
+              Sign Up
             </a>
           </li>
         </ul>

@@ -4,14 +4,11 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "react-dom";
-import { Carousel } from "@mantine/carousel";
-import { useMediaQuery } from "@mantine/hooks";
-import { useMantineTheme } from "@mantine/core";
-import Card from "@/components/productCard";
 import { ProductResp } from "@/types/products";
+import CardsCarousel from "@/components/cardsCarousel";
 
 const CountDownTimer = () => {
-  const difference = +new Date("2024-03-28 23:59:49") - +new Date();
+  const difference = +new Date("2024-03-29 20:00:00") - +new Date();
   const calculateTimeLeft = () => {
     let timeLeft = { days: 0, hours: 0, minutes: 0, seconds: 0 };
 
@@ -67,29 +64,6 @@ const CountDownTimer = () => {
     </div>
   );
 };
-
-function CardsCarousel(data: ProductResp[]) {
-  const theme = useMantineTheme();
-  const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
-  const slides = data.map((item) => (
-    <Carousel.Slide key={item.id}>
-      <Card item={item} />
-    </Carousel.Slide>
-  ));
-
-  return (
-    <Carousel
-      slideSize={{ base: "33.33%", md: "20%" }}
-      slideGap={{ base: "xs", sm: "xs" }}
-      align="start"
-      slidesToScroll={mobile ? 3 : 5}
-      withControls={false}
-      dragFree
-    >
-      {slides}
-    </Carousel>
-  );
-}
 
 export default function Home() {
   const [flashSaleItems, setFlashSaleItems] = useState<ProductResp[]>([]);
