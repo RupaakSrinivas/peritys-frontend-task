@@ -29,6 +29,8 @@ export const useAuthStore = create<authStore>((set) => ({
     initializeFromLocalStorage: () => {
         const user = localStorage.getItem("user");
         if (user) {
+            const { username, token } = JSON.parse(user);
+            set({ username, token, isLoggedIn: true });
             set({ isLoggedIn: true });
         }
     },

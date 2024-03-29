@@ -1,15 +1,26 @@
 "use client";
 import { useEffect, useState } from "react";
-import { CiSearch, CiHeart } from "react-icons/ci";
+import { CiSearch, CiHeart, CiUser } from "react-icons/ci";
 import { IoCartOutline } from "react-icons/io5";
+import { useAuthStore } from "@/store/auth";
+import { Menu, Button } from "@mantine/core";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
+  const router = useRouter();
   const [active, setActive] = useState("/home");
+  const { isLoggedIn, logout } = useAuthStore();
+
+  const [login, setLogin] = useState(isLoggedIn);
 
   useEffect(() => {
-    const currentLink = window.location.pathname;
-    setActive(currentLink);
-  }, []);
+    setLogin(isLoggedIn);
+  }, [isLoggedIn]);
+
+  const handleLogout = () => {
+    logout();
+    router.push("/");
+  };
 
   return (
     <div className="h-[64px] border-b-2 text-[0.5rem] md:text-[1rem] flex flex-row items-center justify-around p-4">
@@ -78,6 +89,38 @@ export default function Navbar() {
         <div className="flex flex-row gap-2 items-center text-[1rem] md:text-[1.5rem]">
           <CiHeart />
           <IoCartOutline />
+          <div className="relative ">
+            {login && (
+              <Menu
+                trigger="click-hover"
+                // offset={100}
+                position="bottom"
+                withArrow
+                openDelay={100}
+                closeDelay={400}
+              >
+                <Menu.Target>
+                  <Button
+                    variant="transparent"
+                    color="black"
+                    radius="xl"
+                    size="compact-xl"
+
+                    // padding="xs"
+                    // leftIcon={<CiUser />}
+                  >
+                    <CiUser />
+                  </Button>
+                </Menu.Target>
+                <Menu.Dropdown>
+                  <Menu.Item component="a" href="/profile">
+                    Profile
+                  </Menu.Item>
+                  <Menu.Item onClick={() => handleLogout()}>Logout</Menu.Item>
+                </Menu.Dropdown>
+              </Menu>
+            )}
+          </div>
         </div>
       </div>
     </div>

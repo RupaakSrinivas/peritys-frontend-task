@@ -18,7 +18,6 @@ export default function Card({ item }: { item: ProductResp }) {
     <div
       onClick={(e) => {
         e.preventDefault();
-        console.log("clicked");
         router.push(`/productDetails?id=${item.id}`);
       }}
       className="w-[270px] h-[350px] rounded-md relative cursor-pointer"
