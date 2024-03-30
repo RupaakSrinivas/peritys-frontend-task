@@ -91,8 +91,9 @@ export default function Navbar() {
           </button>
         </div>
         <div className="flex flex-row gap-2 items-center text-[1rem] md:text-[1.5rem]">
-          <CiHeart />
-          <IoCartOutline />
+          <a href="/profile/cart">
+            <IoCartOutline />
+          </a>
           <div className="relative ">
             {login && (
               <Menu

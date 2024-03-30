@@ -4,14 +4,25 @@ import { useState } from "react";
 import { ProductResp } from "@/types/products";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useCartStore } from "@/store/cart";
+import { CartItem } from "@/types/products";
 
 export default function Card({ item }: { item: ProductResp }) {
   const router = useRouter();
 
   const [hover, setHover] = useState(false);
+  const { addProduct, inCart, removeProduct } = useCartStore();
 
   const handleAddCartItem = () => {
-    console.log("added to cart");
+    const cartItem: CartItem = {
+      id: item.id,
+      title: item.title,
+      price: item.price,
+      image: item.image,
+      quantity: 1,
+      totalPrice: item.price,
+    };
+    addProduct(cartItem);
   };
 
   return (
@@ -57,16 +68,38 @@ export default function Card({ item }: { item: ProductResp }) {
           <p className="text-lg">({item?.rating?.count} reviews)</p>
         </div>
       </div>
-      <button
-        onClick={handleAddCartItem}
+      <div
         className={`w-full mt-max flex flex-col items-center bottom-0 justify-end ${
           hover ? "absolute" : "hidden"
         }`}
       >
-        <p className="w-full h-9 text-white rounded-b-md bg-black">
-          Add to Cart
-        </p>
-      </button>
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            handleAddCartItem();
+          }}
+          className={`w-full mt-max flex flex-col items-center bottom-0 justify-end ${
+            inCart(item.id) ? "hidden" : ""
+          }`}
+        >
+          <p className={`w-full h-9 text-white rounded-b-md bg-black`}>
+            Add to Cart
+          </p>
+        </button>
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            removeProduct(item.id);
+          }}
+          className={`w-full mt-max flex flex-col items-center bottom-0 justify-end ${
+            inCart(item.id) ? "" : "hidden"
+          }`}
+        >
+          <p className={`w-full h-9 text-white rounded-b-md bg-black`}>
+            Remove from Cart
+          </p>
+        </button>
+      </div>
     </div>
   );
 }

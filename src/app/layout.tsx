@@ -10,6 +10,7 @@ import Footer from "@/components/footer";
 import "@mantine/core/styles.css";
 import "@mantine/carousel/styles.css";
 import { Suspense } from "react";
+import { useCartStore } from "@/store/cart";
 
 import { MantineProvider, ColorSchemeScript } from "@mantine/core";
 import LoadingScreen from "@/components/loadingScreen";
@@ -22,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const { login, isLoggedIn, initializeFromLocalStorage } = useAuthStore();
-
+  const { initializeCartFromLocalStorage } = useCartStore();
   useEffect(() => {
     if (isLoggedIn) {
       return () => {
@@ -36,7 +37,8 @@ export default function RootLayout({
 
   useEffect(() => {
     initializeFromLocalStorage();
-  }, [initializeFromLocalStorage]);
+    initializeCartFromLocalStorage();
+  }, [initializeFromLocalStorage, initializeCartFromLocalStorage]);
 
   return (
     <html lang="en">

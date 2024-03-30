@@ -12,14 +12,14 @@ export interface ProductResp {
 }
 
 export interface CartItem {
-  productId: number;
+  id: number;
+  title: string;
+  price: number;
+  image: string;
   quantity: number;
+  totalPrice: number;
 }
 
-export interface Cart {
-  id: number;
-  userId: number;
-  date: string;
+export interface Carts {
   products: CartItem[];
-  __v: number;
 }
