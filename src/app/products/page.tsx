@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import pageNavigation from "@/components/pageNavigation";
 import axios from "axios";
@@ -6,7 +6,7 @@ import { ProductResp } from "@/types/products";
 import { useState, useEffect } from "react";
 import Card from "@/components/productCard";
 import { useLoadingStore } from "@/store/loading";
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams } from "next/navigation";
 
 const links = [
   { name: "Home", url: "/" },
@@ -17,8 +17,8 @@ export default function Products() {
   const [products, setProducts] = useState<ProductResp[]>([]);
   const { startLoading, stopLoading } = useLoadingStore();
 
-  const searchParams = useSearchParams()
-  const category = searchParams.get('category')
+  const searchParams = useSearchParams();
+  const category = searchParams.get("category");
 
   const getProducts = async () => {
     try {

@@ -49,9 +49,7 @@ const CartItemCard = ({ item }: { item: CartItem }) => {
 };
 
 export default function Cart() {
-  const { cart, getCart } = useCartStore();
-
-  console.log(getCart());
+  const { cart } = useCartStore();
 
   const cartTotal = () => {
     let total = 0;

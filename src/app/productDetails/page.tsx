@@ -9,7 +9,6 @@ import { useLoadingStore } from "@/store/loading";
 import { useSearchParams } from "next/navigation";
 import { CiHeart } from "react-icons/ci";
 import CardsCarousel from "@/components/cardsCarousel";
-import { link } from "fs";
 
 let missingProductData = {
   images: [
@@ -35,7 +34,7 @@ export default function ProductDetails() {
     size: string;
     quantity: number;
     favorite: boolean;
-  }>({ color: "", size: "", quantity: 1, favorite: false });
+  }>({ color: "", size: "", quantity: 0, favorite: false });
 
   const [links, setLinks] = useState<{ name: string; url: string }[]>([
     { name: "Home", url: "/" },
@@ -197,10 +196,10 @@ export default function ProductDetails() {
               <div className="flex flex-row items-center justify-around border rounded-md border-black">
                 <button
                   className={`border-r p-2 px-4 border-black hover:bg-red-500 hover:text-white ${
-                    selectedProperties.quantity <= 1 ? "cursor-not-allowed" : ""
+                    selectedProperties.quantity <= 0 ? "cursor-not-allowed" : ""
                   }`}
                   onClick={() => {
-                    if (selectedProperties.quantity > 1) {
+                    if (selectedProperties.quantity > 0) {
                       setSelectedProperties({
                         ...selectedProperties,
                         quantity: selectedProperties.quantity - 1,

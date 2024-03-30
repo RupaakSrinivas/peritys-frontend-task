@@ -24,14 +24,12 @@ export const useCartStore = create<CartStore>((set, get) => ({
     return products.some((product) => product.id === id);
   },
   addProduct: (product) => {
-    console.log(product);
     set((state) => ({
       cart: {
         ...state.cart,
         products: [...state.cart.products, product],
       },
     }));
-    console.log(get().cart);
     localStorage.setItem("cart", JSON.stringify(get().cart));
   },
 

@@ -44,6 +44,15 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <ColorSchemeScript />
+        <title>Exclusive</title>
+        <meta
+          name="title"
+          content="Exclusive - The only E-Commerce website you need"
+        />
+        <meta
+          name="description"
+          content="Shop premium finds at Exclusive - your go-to for luxury e-commerce. Explore curated collections of fashion, tech, and more. Elevate your online shopping experience today!"
+        />
       </head>
       <body className={inter.className}>
         <MantineProvider>
