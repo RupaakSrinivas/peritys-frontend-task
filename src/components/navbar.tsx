@@ -31,7 +31,7 @@ export default function Navbar() {
       >
         Exclusive
       </a>
-      <nav className="hidden md:block">
+      <nav className="block">
         <ul className="flex flex-row items-center space-x-4">
           <li>
             <a
@@ -80,7 +80,7 @@ export default function Navbar() {
         </ul>
       </nav>
       <div className="flex flex-row justify-around gap-4">
-        <div className="flex flex-row items-center bg-[#F5F5F5]">
+        <div className="flex-row hidden md:flex items-center bg-[#F5F5F5]">
           <input
             type="text"
             placeholder="What are you looking for?"
@@ -95,7 +95,7 @@ export default function Navbar() {
             <IoCartOutline />
           </a>
           <div className="relative ">
-            {login && (
+            {login ? (
               <Menu
                 trigger="click-hover"
                 // offset={100}
@@ -124,6 +124,10 @@ export default function Navbar() {
                   <Menu.Item onClick={() => handleLogout()}>Logout</Menu.Item>
                 </Menu.Dropdown>
               </Menu>
+            ) : (
+              <a href="/auth/login">
+                <CiUser />
+              </a>
             )}
           </div>
         </div>
