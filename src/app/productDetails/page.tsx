@@ -11,7 +11,7 @@ import { CiHeart } from "react-icons/ci";
 import CardsCarousel from "@/components/cardsCarousel";
 import { link } from "fs";
 
-const missingProductData = {
+let missingProductData = {
   images: [
     "https://picsum.photos/id/0/367/267",
     "https://picsum.photos/id/21/367/267",
@@ -60,6 +60,12 @@ export default function ProductDetails() {
               url: `/productDetails?id=${data.id}`,
             },
           ]);
+        if (!missingProductData.images.includes(data.image)) {
+          missingProductData = {
+            ...missingProductData,
+            images: [data.image, ...missingProductData.images],
+          };
+        }
         stopLoading();
       } catch (error) {
         stopLoading();
@@ -70,7 +76,7 @@ export default function ProductDetails() {
 
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     const fetchSimilarItems = async () => {

@@ -20,7 +20,7 @@ export const useAuthStore = create<authStore>((set) => ({
     isLoggedIn: false,
     login: (props: user) => {
         localStorage.setItem("user", JSON.stringify(props));
-        set({ isLoggedIn: true });
+        set({ username: props.username, token: props.token, isLoggedIn: true });
     },
     logout: () => {
         localStorage.removeItem("user");

@@ -5,9 +5,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 import axios, { AxiosError } from "axios";
 import { useRouter } from "next/navigation";
+import { useAuthStore } from "@/store/auth";
 
 export default function Login() {
   const router = useRouter();
+  const { login } = useAuthStore();
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -30,6 +32,7 @@ export default function Login() {
         token: token,
       };
       localStorage.setItem("user", JSON.stringify(user));
+      login(user);
       router.replace("/");
     } catch (error: AxiosError | any) {
       console.error(error.response.data);
@@ -51,6 +54,8 @@ export default function Login() {
           Login to Exclusive
         </h1>
         <p>Enter your details below</p>
+        <p>username: mor_2314</p>
+        <p>password: 83r5^_</p>
       </div>
       <form
         className="flex flex-col gap-8"

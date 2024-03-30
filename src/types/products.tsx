@@ -10,3 +10,16 @@ export interface ProductResp {
     count: number;
   };
 }
+
+export interface CartItem {
+  productId: number;
+  quantity: number;
+}
+
+export interface Cart {
+  id: number;
+  userId: number;
+  date: string;
+  products: CartItem[];
+  __v: number;
+}

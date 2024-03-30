@@ -31,9 +31,31 @@ export default function Card({ item }: { item: ProductResp }) {
         height={250}
         className="rounded-t-md w-[270px] h-[250px] object-cover"
       />
-      <div className="flex flex-col p-2 text-center justify-start">
-        <h1>{item.title}</h1>
-        <p>${item.price}</p>
+      <div className="flex flex-col p-2 text-left justify-start">
+        <h1 className="line-clamp-1 text-ellipsis">{item.title}</h1>
+        <p className="text-red-500">${item.price}</p>
+        <div className="text-[2rem] flex flex-row items-center">
+          {Array.from(
+            { length: Math.floor(item?.rating?.rate) },
+            (_, index) => (
+              <span key={index} className="text-yellow-500">
+                ★
+              </span>
+            )
+          )}
+          {item?.rating?.rate % 1 !== 0 && (
+            <span className="text-yellow-500">★</span>
+          )}
+          {Array.from(
+            { length: 5 - Math.ceil(item?.rating?.rate) },
+            (_, index) => (
+              <span key={index} className="text-gray-400">
+                ★
+              </span>
+            )
+          )}
+          <p className="text-lg">({item?.rating?.count} reviews)</p>
+        </div>
       </div>
       <button
         onClick={handleAddCartItem}

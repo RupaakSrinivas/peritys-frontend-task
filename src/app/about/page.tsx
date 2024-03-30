@@ -5,55 +5,17 @@ import { LiaShippingFastSolid } from "react-icons/lia";
 import { RiCustomerServiceLine } from "react-icons/ri";
 import { GoShieldCheck } from "react-icons/go";
 import Image from "next/image";
-import { IconType } from "react-icons";
-import { useState } from "react";
+import StatCard from "@/components/statCard";
 
 const links = [
   { name: "Home", url: "/" },
   { name: "About", url: "/about" },
 ];
 
-interface statCardProps {
-  image: IconType;
-  value: string;
-  desc: string;
-  border: boolean;
-}
-
 interface PersonCardProps {
   name: string;
   image: string;
   desc: string;
-}
-
-function StatCard(data: statCardProps) {
-  const [hover, setHover] = useState(false);
-  return (
-    <div
-      id="card"
-      className={`w-[270px] h-[200px] ${
-        data.border ? "border border-opacity-30 border-black" : ""
-      } flex flex-col items-center justify-around hover:bg-red-500 hover:text-white rounded-md`}
-      onMouseOver={() => {
-        setHover(true);
-      }}
-      onMouseOut={() => {
-        setHover(false);
-      }}
-    >
-      <div
-        className={`p-2 text-[2.5rem] z-2 border-8 rounded-full border-gray-400 ${
-          hover
-            ? "text-black bg-white border-[#e67c7c]"
-            : "text-white bg-black border-[#c1c1c1]"
-        }`}
-      >
-        <data.image />
-      </div>
-      <h1 className="font-bold text-[1.25rem]">{data.value}</h1>
-      <p className="text-[1rem]">{data.desc}</p>
-    </div>
-  );
 }
 
 function PersonCard(data: PersonCardProps) {

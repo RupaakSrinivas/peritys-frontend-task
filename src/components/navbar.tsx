@@ -15,6 +15,7 @@ export default function Navbar() {
 
   useEffect(() => {
     setLogin(isLoggedIn);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoggedIn]);
 
   const handleLogout = () => {
@@ -24,9 +25,12 @@ export default function Navbar() {
 
   return (
     <div className="h-[64px] border-b-2 text-[0.5rem] md:text-[1rem] flex flex-row items-center justify-around p-4">
-      <h1 className=" font-inter font-bold text-[.75rem] md:text-[1.5rem]">
+      <a
+        href="/"
+        className=" font-inter font-bold text-[.75rem] md:text-[1.5rem]"
+      >
         Exclusive
-      </h1>
+      </a>
       <nav className="hidden md:block">
         <ul className="flex flex-row items-center space-x-4">
           <li>
